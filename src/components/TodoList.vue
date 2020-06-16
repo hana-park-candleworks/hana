@@ -1,10 +1,10 @@
 <template>
-    <div>hello</div>
+    <div>list</div>
 </template>
 
 <script>
     export default {
-        name: "HelloWorld.vue"
+        name: "TodoList"
     }
 </script>
 
