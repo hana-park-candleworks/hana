@@ -1,26 +1,18 @@
 <template>
-  <div id="app" class="text-center bg-green-300">
-    <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
-    <TodoList></TodoList>
-    <TodoFooter></TodoFooter>
-  </div>
+    <div class="text-center bg-green-300">
+        <ul>
+            <li><router-link to="/home">Home</router-link></li>
+            <li><router-link to="/about">About</router-link></li>
+            <li><router-link to="/to-do-list">To Do List</router-link></li>
+        </ul>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-  import TodoHeader from "@/components/TodoHeader.vue";
-  import TodoInput from "@/components/TodoInput.vue";
-  import TodoList from "@/components/TodoList.vue";
-  import TodoFooter from "@/components/TodoFooter.vue";
-
-  export default {
-    components: {
-      'TodoHeader': TodoHeader,
-      'TodoInput': TodoInput,
-      'TodoList': TodoList,
-      'TodoFooter': TodoFooter
+    export default {
+        name:'App'
     }
-  }
 </script>
 
 <style>
