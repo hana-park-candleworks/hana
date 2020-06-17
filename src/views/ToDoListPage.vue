@@ -3,7 +3,7 @@
         <todo-header/>
         <todo-input @add="addTodo"/>
         <todo-list :items="todoItems" @removed="removeTodo"/>
-        <todo-footer @click="clearAll()"></todo-footer>
+        <todo-footer @click="clearAll()"/>
     </div>
 </template>
 

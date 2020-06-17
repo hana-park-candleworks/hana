@@ -9,7 +9,3 @@
         name: "TodoHeader"
     }
 </script>
-
-<style scoped>
-
-</style>

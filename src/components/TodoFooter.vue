@@ -6,6 +6,7 @@
 
 <script>
     export default {
+        name: "TodoFooter",
         methods: {
             clearTodo() {
                 this.$emit('removeAll');
@@ -13,7 +14,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

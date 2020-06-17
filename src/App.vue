@@ -14,7 +14,3 @@
         name:'App'
     }
 </script>
-
-<style>
-
-</style>

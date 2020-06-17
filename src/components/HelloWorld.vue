@@ -4,10 +4,6 @@
 
 <script>
     export default {
-        name: "HelloWorld.vue"
+        name: "HelloWorld"
     }
 </script>
-
-<style scoped>
-
-</style>
