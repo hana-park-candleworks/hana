@@ -1,5 +1,5 @@
 <template>
-    <div>hello</div>
+    <div>hana's candleworks copy</div>
 </template>
 
 <script>
