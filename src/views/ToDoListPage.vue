@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center bg-green-300">
+    <div class="text-center bg-white p-4">
         <todo-header/>
         <todo-input @add="addTodo"/>
         <todo-list :items="todoItems" @removed="removeTodo"/>
@@ -35,15 +35,12 @@
         },
         methods: {
             addTodo(todoItem) {
-                //localStorage.setItem(todoItem, todoItem);
                 this.todoItems.push(todoItem);
             },
             clearAll() {
-                //localStorage.clear();
                 this.todoItems = [];
             },
             removeTodo(todoItem, index) {
-                //localStorage.removeItem(todoItem);
                 this.todoItems.splice(index, 1);
             }
         },

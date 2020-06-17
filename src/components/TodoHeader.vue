@@ -1,6 +1,6 @@
 <template>
     <header>
-        <h1 class="text-black font-black m-auto">Hana's To Do List</h1>
+        <h4 class="text-black text-3xl font-light my-4">To Do List</h4>
     </header>
 </template>
 
