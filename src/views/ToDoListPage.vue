@@ -12,7 +12,7 @@
     import TodoInput from "@/components/TodoInput.vue";
     import TodoList from "@/components/TodoList.vue";
     import TodoFooter from "@/components/TodoFooter.vue";
-    import TodoHeader from "@/components/TodoHeader";
+    import TodoHeader from "@/components/TodoHeader.vue";
     export default {
         name: "ToDoListPage",
         components: {
@@ -52,7 +52,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>
