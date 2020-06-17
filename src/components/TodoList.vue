@@ -1,14 +1,13 @@
 <template>
     <section class="m-auto my-2">
-        <transition-group name="list" tag="ul" class="">
+        <ul>
             <li class="bg-black text-left p-2 my-1" v-for="(todoItem, index) in items" :key="index + 'todo-list-id'">
-                <i class="fa fa-check-square" aria-hidden="true"/>
                 {{ todoItem }}
                 <span class="float-right" type="button" @click="removeTodo(todoItem, index)">
                     <i class="fa fa-trash" aria-hidden="true"/>
                 </span>
             </li>
-        </transition-group>
+        </ul>
     </section>
 </template>
 
@@ -23,3 +22,7 @@
         }
     }
 </script>
+
+<style scoped>
+
+    </style>

@@ -1,9 +1,56 @@
 <template>
-    <div>hana's candleworks copy</div>
+    <div class="min-h-screen w-screen bg-white flex">
+        <ul class="w-full text-black">
+            <li v-for="list in lists"
+                :key="list.id"
+                class="p-4 my-3 w-1/2 inline-block items-center bg-white shadow-md rounded-lg">
+                <div class="flex-col items-center">
+                    <img class="w-auto" :src="list.img" :alt="list.desc">
+                    <p class="my-1 text-black font-semibold font-sans tracking-wide">{{list.desc}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
     export default {
-        name: "HelloWorld"
-    }
+        name: "HelloWorld",
+        data() {
+            return {
+                lists: [
+                    {
+                        id: 1,
+                        desc: "기본에 충실하게, PC 몰드로 만드는 모던한 감성",
+                        img: "https://image.candleworks.com/cw_magazine/157/SpCZN6LAQrvxEaT5lJacoArHG4tXw6aimW2bn61P.jpeg"
+                    },
+                    {
+                        id: 2,
+                        desc: "가끔 봐도, 오래 보아도 예쁜 캔들",
+                        img: "https://image.candleworks.com/cw_magazine/156/hLqODKT17rJUJAuVVQwwkgFZWycaFHZ2DZAFESxr.jpeg"
+                    },
+                    {
+                        id: 3,
+                        desc: "기본에 충실한 도구",
+                        img: "https://image.candleworks.com/cw_magazine/155/zSnv9P2l2OiRz2dNlPJva8oAurLV5df8NkBVhcuW.jpeg"
+                    },
+                    {
+                        id: 4,
+                        desc: "컬러, 이제 전용 컬러칩으로 확인하세요",
+                        img: "https://image.candleworks.com/cw_magazine/154/b4MdMIgpvb79KT3YnFtYSdUhvHjChHtBOk8YbVQk.jpeg"
+                    },
+                    {
+                        id: 5,
+                        desc: "감사한 마음을 향기에 담아 선물하세요",
+                        img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
+                    }
+                ]
+            }
+        }
+    };
+
 </script>
+
+<style scoped>
+
+</style>
