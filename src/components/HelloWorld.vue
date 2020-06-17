@@ -3,10 +3,10 @@
         <ul class="w-full text-black">
             <li v-for="list in lists"
                 :key="list.id"
-                class="p-4 my-3 w-1/2 inline-block items-center bg-white shadow-md rounded-lg">
-                <div class="flex-col items-center">
+                class="p-4 my-3 w-1/2 inline-block bg-white shadow-md rounded-lg">
+                <div>
                     <img class="w-auto" :src="list.img" :alt="list.desc">
-                    <p class="my-1 text-black font-semibold font-sans tracking-wide">{{list.desc}}</p>
+                    <p class="block my-1 text-black font-semibold font-sans tracking-wide">{{list.desc}}</p>
                 </div>
             </li>
         </ul>
@@ -52,5 +52,7 @@
 </script>
 
 <style scoped>
-
+    p:hover{
+        opacity: 0.5;
+    }
 </style>
