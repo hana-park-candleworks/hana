@@ -3,7 +3,7 @@
         <ul class="w-full text-black">
             <li v-for="list in lists"
                 :key="list.id"
-                class="p-4 my-3 w-1/2 inline-block bg-white shadow-md rounded-lg"
+                class="p-4 my-3 w-1/2 inline-block bg-white shadow-md rounded-lg cursor-default"
                 @mouseover="upDateImgUrl(list.img)">
                 <div>
                     <p class="block my-1 text-black font-semibold font-sans tracking-wide">{{list.desc}}</p>

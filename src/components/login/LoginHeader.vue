@@ -3,9 +3,9 @@
         <h1>로그인</h1>
         <span>
             {{ message }}
-            <i class="fa fa-arrow-right" @click="addCount"/>
+            <i class="fa fa-arrow-right cursor-pointer" @click="addCount"/>
         </span>
-        <a v-if="countRemain === 0" :href="candleUrl">캔들웍스 이동하기</a>
+        <a v-if="countRemain === 0" :href="candleUrl">  캔들웍스 이동하기</a>
     </div>
 </template>
 
