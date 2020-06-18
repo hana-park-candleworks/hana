@@ -1,10 +1,10 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex">
         <ul class="w-full text-black">
-            <li v-for="list in lists"
+            <li v-for="(list, index) in lists"
                 :key="list.id"
                 class="p-4 my-3 w-1/2 inline-block bg-white shadow-md rounded-lg cursor-default"
-                @mouseover="upDateImgUrl(list.img)">
+                @mouseover="upDateImgUrl(index)">
                 <div>
                     <p class="block my-1 text-black font-semibold font-sans tracking-wide">{{list.desc}}</p>
                 </div>
@@ -20,6 +20,7 @@
         data() {
             return {
                 imgUrl: "https://image.candleworks.com/cw_magazine/157/SpCZN6LAQrvxEaT5lJacoArHG4tXw6aimW2bn61P.jpeg",
+                imgUrlIndex: 0,
                 lists: [
                     {
                         id: 1,
@@ -50,9 +51,11 @@
             }
         },
         methods: {
-            upDateImgUrl(url) {
-                this.imgUrl = url
+            upDateImgUrl(index) {
+                this.imgUrlIndex = index
+                this.imgUrl = this.lists[this.imgUrlIndex].img
             }
+
         }
     };
 
