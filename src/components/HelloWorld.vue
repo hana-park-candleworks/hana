@@ -3,12 +3,13 @@
         <ul class="w-full text-black">
             <li v-for="list in lists"
                 :key="list.id"
-                class="p-4 my-3 w-1/2 inline-block bg-white shadow-md rounded-lg">
+                class="p-4 my-3 w-1/2 inline-block bg-white shadow-md rounded-lg"
+                @mouseover="upDateImgUrl(list.img)">
                 <div>
-                    <img class="w-auto" :src="list.img" :alt="list.desc">
                     <p class="block my-1 text-black font-semibold font-sans tracking-wide">{{list.desc}}</p>
                 </div>
             </li>
+            <img class="m-auto" :src="imgUrl">
         </ul>
     </div>
 </template>
@@ -18,6 +19,7 @@
         name: "HelloWorld",
         data() {
             return {
+                imgUrl: "https://image.candleworks.com/cw_magazine/157/SpCZN6LAQrvxEaT5lJacoArHG4tXw6aimW2bn61P.jpeg",
                 lists: [
                     {
                         id: 1,
@@ -45,6 +47,11 @@
                         img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
                     }
                 ]
+            }
+        },
+        methods: {
+            upDateImgUrl(url) {
+                this.imgUrl = url
             }
         }
     };
