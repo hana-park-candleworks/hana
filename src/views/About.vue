@@ -1,5 +1,5 @@
 <template>
-  <div class="text-left p-4 bg-white">
+  <div class="width-lg">
     <login-header/>
     <section>
       <login-member/>
@@ -20,3 +20,14 @@
     }
   }
 </script>
+
+<style>
+  .width-lg {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    padding-top: 20px;
+    margin-bottom: 40px;
+  }
+</style>
