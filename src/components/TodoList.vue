@@ -5,7 +5,9 @@
                 <span>
                     <i class="fa fa-check-square"/>
                 </span>
-                {{ todoItem }}
+                <span :class="{ line : textLine }" @click="textTrue">
+                    {{ todoItem }}
+                </span>
                 <span class="float-right" type="button" @click="removeTodo(todoItem, index)">
                     <i class="fa fa-trash" aria-hidden="true"/>
                 </span>
@@ -18,14 +20,24 @@
     export default {
         name: 'TodoList',
         props: ['items'],
+        data() {
+            return {
+                textLine : false
+            }
+        },
         methods: {
             removeTodo(todoItem, index) {
                 this.$emit('removed', todoItem, index);
+            },
+            textTrue() {
+                this.textLine = true
             }
         }
     }
 </script>
 
 <style scoped>
-
+    .line {
+        text-decoration: line-through;
+    }
 </style>
