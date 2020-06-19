@@ -1,3 +1,6 @@
 module.exports ={
-    outputDir : 'public'
+    outputDir : 'public',
+    devServer :{
+        proxy : 'https://candleworks.co.kr'
+    }
 }

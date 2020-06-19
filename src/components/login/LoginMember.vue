@@ -6,20 +6,21 @@
                     <h4 class="subtitle">회원</h4>
                     <form class="form-style">
                         <div>
-                            <input class="input-style" placeholder="아이디">
+                            <input class="input-style" placeholder="아이디" v-model="user.mb_id">
                         </div>
                         <div style="margin-bottom: 10px">
-                            <input class="input-style" placeholder="패스워드" type="password">
+                            <input class="input-style" placeholder="패스워드" type="password" v-model="user.mb_password">
                         </div>
                     </form>
-                    <div>
-                        <button class="button-style">로그인</button>
+                    <div v-if="errors.mb_id">
+                        {{ errors }}
                     </div>
-                    <div style="position: relative;">
-                        <span class="checkBox-style" :class="{ checkIconStyle : checkTrue }"></span>
-                        <input type="checkbox" id="autoLogin" style="display: none; width: 18px; height: 18px; vertical-align: middle;" @click="checkIcon">
-                        <label class="checkBox-text" for="autoLogin">자동 로그인</label>
-                        <span class="searchText-style">아이디/비밀번호 찾기</span>
+                    <div>
+                        <button class="button-style" @click="login">로그인</button>
+                    </div>
+                    <div style="position: relative; border-bottom: 1px solid #ddd; margin: 20px 0; height: 40px;">
+                        <ev-check-box> 자동로그인</ev-check-box>
+                        <a>아이디/비밀번호 찾기</a>
                     </div>
                 </div>
                 <div class="flex-col w-1/2 pl-0" style="padding-left: 20px;">
@@ -35,8 +36,8 @@
                     <div>
                         <button class="button-style">주문조회</button>
                     </div>
-                    <div>
-                        <h6 style="margin-top: 20px; margin-bottom: 20px; height: 30px; font-size: 13px;">아직 캔들웍스의 회원이 아니세요?</h6>
+                    <div style="border-bottom: 1px solid #ddd; margin: 20px 0; height: 40px;">
+                        <h6 style="font-size: 18px; font-weight: 500;">아직 캔들웍스의 회원이 아니세요?</h6>
                     </div>
                 </div>
             </div>
@@ -45,6 +46,8 @@
 </template>
 
 <script>
+    import EvCheckBox from "@/components/EvCheckBox";
+    import axios from 'axios';
     /**
      * @route post https://candleworks.co.kr/api/v1/login
      * @param mb_id string
@@ -53,28 +56,43 @@
      */
     export default {
         name: "LoginMember",
-        data() {
+        components: {EvCheckBox},
+        data(){
             return {
-                checkTrue : false
+                user:{
+                    mb_id : 'hana',
+                    mb_password : 'password'
+                },
+                errors:{}
             }
         },
         methods: {
-            checkIcon(){
-                if(this.checkTrue === false){
-                    this.checkTrue = true;
-                }else{
-                    this.checkTrue = false;
+            async login(){
+                try{
+                    const result = await axios.post("/api/v1/login", this.user);
+                    console.log(result);
+                } catch (e) {
+                    console.log('catch');
+                    console.log(e.response);
+                    this.errors = e.response.data;
                 }
             }
         }
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .subtitle {
         font-size: 30px;
         font-weight: 500;
         margin:8px 0;
+    }
+    .subtitle:before {
+        width: 10px ;
+        height: 10px;
+        display: inline-block;
+        color: yellow;
+        content: '>>';
     }
     .form-style{
         margin-bottom: 20px;
@@ -116,40 +134,15 @@
     .button-style:hover {
         opacity: 0.9;
     }
-    .checkBox-style {
+    input[id="autoLogin"] + label:before {
         width: 18px;
         height: 18px;
-        border: 1px solid rgba(96, 96, 96, 0.3);
-        border-radius: 2px;
-        margin-right: 10px;
+        border-radius: 3px;
+        border: 1px solid #606060;
         display: inline-block;
-        line-height: 1;
         vertical-align: middle;
-        animation: 0.2s;
-        cursor: pointer;
-        position: absolute;
-        top: 3px;
     }
-    .checkBox-style:hover {
-        border: 1px solid rgba(96, 96, 96, 1);
-    }
-    .checkBox-text {
-        margin-left: 30px;
-        font-size: 15px;
-        color: #606060;
-        font-weight: 500;
-    }
-    .checkIconStyle {
-        background-color: #606060;
-    }
-    .checkIconStyle::after {
-        position: absolute;
-        top: 50px;
-        width: 5px;
-        height: 1px;
-        color: red;
-    }
-    .checkIconStyle::after {
-
+    input[id="autoLogin"]:checked + label {
+        background: yellow;
     }
 </style>
