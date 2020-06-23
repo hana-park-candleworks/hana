@@ -1,11 +1,12 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
         <div>
-            {{ reverseMessage }}
-<!--        템플릿 내에 표현식을 넣으면 편리하지만, 복잡해지면 코드가 지저분해지기 때문에 computed 를 사용함.
-            methods와 computed의 차이는 ?
-            methods를 쓸 때는 템플릿 함수 뒤에 ()를 써줘야 하고 computed는 생략 가능.
-            computed 속성은 캐싱을 하고, methods는 캐싱을 하지 않는다. 계산된 값을 저장해두기 때문에 계산된 값을 여러번 써야될 때 더 효율적인 코드가 됨. -->
+            <button @click="changeMessage">클릭</button><br>
+            {{ reverseMessage }}<br>
+            {{ updated }}
+<!--        computed가 watch보다 더 코드를 간결하게 쓸 수 있기 때문에 되도록 computed를 사용하여 코드를 짜주는 것이 좋다.
+            watch로 변수에 할당되는 값이 무엇으로 바뀌는지 볼 수 있음.
+            -->
         </div>
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
@@ -55,19 +56,30 @@
                         img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
                     }
                 ],
-                number: '안녕하세요.'
+                number: '안녕하세요.',
+                updated: '아니오'
             }
         },
         methods: {
             upDateImgUrl(index) {
                 this.imgUrlIndex = index
                 this.imgUrl = this.lists[this.imgUrlIndex].img
+            },
+            changeMessage() {
+                this.number = '하나 하나';
             }
 
         },
         computed: {
             reverseMessage() {
                 return this.number.split('').reverse().join('');
+            }
+        },
+        watch: {
+            //감시하고 싶은 데이터 작성
+            number(newVal, oldVal) {  //newValue와 oldValue를 매개변수로 사용. newValue에는 변한 값, oldValue에는 변하기 전 값이 할당됨.
+                console.log(newVal, oldVal); //하나 하나 안녕하세요.
+                this.updated = '네';
             }
         }
     };
