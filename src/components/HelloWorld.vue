@@ -1,9 +1,13 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
-        <button @click="changeColor">색깔 바꾸기</button>
-        <div :style="{ color: red, fontSize: size }">
-            hello
-        </div>
+        <button @click="rendering"> 랜더링 </button>
+        <div v-if="show"> Yes </div>
+        <div v-else> No </div>
+<!--        v-if의 조건이 false가 되면 Yes div 자체가 랜더링이 되지 않는다.
+            v-if 와 v-show의 차이점?
+            v-if는 조건이 false이면 랜더링하지 않고 조건이 true가 될 때 마다 랜더링을 해주기 때문에 토글 비용이 높고,
+            v-show는 미리 랜더링 해놓고 display none으로 스타일만 바뀌기 때문에 초기 랜더링 비용이 높다.
+            자주 토글 해야하는 것은 v-show가 효율적이고, 런타임 시 조건이 바뀌지 않는다면 v-if가 효율적이다. -->
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
                 :key="list.id"
@@ -52,12 +56,7 @@
                         img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
                     }
                 ],
-                number: '안녕하세요.',
-                updated: '아니오',
-                isRed: false,
-                isBold: false,
-                red: 'blue',
-                size: '30px'   //스타일바인딩을 하면 엄청 많은 스타일을 한 번에 적용할 수 있음.
+                show: false
             }
         },
         methods: {
@@ -65,9 +64,8 @@
                 this.imgUrlIndex = index
                 this.imgUrl = this.lists[this.imgUrlIndex].img
             },
-            changeColor() {
-                this.isRed = !this.isRed;  //click 시 마다 값이 바뀜!! 토글 !!
-                this.isBold = !this.isBold;
+            rendering() {
+                this.show = !this.show;
             }
         }
     };
