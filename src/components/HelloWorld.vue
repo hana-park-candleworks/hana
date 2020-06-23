@@ -2,7 +2,9 @@
     <div class="min-h-screen w-screen bg-white flex p-4">
         <div>
             <form @submit.prevent="submit">
-                <input type="text" class="border border-gray-300" :value="inputValue" @keyup="updateText" id="inputId"><br>
+<!--                <input type="text" class="border border-gray-300" :value="inputValue" @keyup="updateText" id="inputId"><br>-->
+<!--                v-model을 사용해서 :value, @keyup까지 모두 생략할 수 있음. 입력되는 value값을 실시간으로 data에 반영하고 (prop) 자동으로 event를 발생시켜 html에 적용도 해줌. (emit)-->
+                <input type="text" class="border border-gray-300" v-model="inputValue" id="inputId"><br>
                 {{ inputValue }}
                 <label for="inputId"></label>
                 <button type="submit">제출</button>
@@ -68,9 +70,10 @@
                 alert('제출됨');
                 console.log(this.inputValue);
             },
-            updateText(e) {
-                this.inputValue = e.target.value;
-            }
+            // v-model 사용으로 생략가능하게 된 메소드.
+            // updateText(e) {
+            //     this.inputValue = e.target.value;
+            // }
 
         }
     };
