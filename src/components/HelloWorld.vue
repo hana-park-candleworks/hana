@@ -1,12 +1,8 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
-        <div>
-            <button @click="changeMessage">클릭</button><br>
-            {{ reverseMessage }}<br>
-            {{ updated }}
-<!--        computed가 watch보다 더 코드를 간결하게 쓸 수 있기 때문에 되도록 computed를 사용하여 코드를 짜주는 것이 좋다.
-            watch로 변수에 할당되는 값이 무엇으로 바뀌는지 볼 수 있음.
-            -->
+        <button @click="changeColor">색깔 바꾸기</button>
+        <div :style="{ color: red, fontSize: size }">
+            hello
         </div>
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
@@ -57,7 +53,11 @@
                     }
                 ],
                 number: '안녕하세요.',
-                updated: '아니오'
+                updated: '아니오',
+                isRed: false,
+                isBold: false,
+                red: 'blue',
+                size: '30px'   //스타일바인딩을 하면 엄청 많은 스타일을 한 번에 적용할 수 있음.
             }
         },
         methods: {
@@ -65,21 +65,9 @@
                 this.imgUrlIndex = index
                 this.imgUrl = this.lists[this.imgUrlIndex].img
             },
-            changeMessage() {
-                this.number = '하나 하나';
-            }
-
-        },
-        computed: {
-            reverseMessage() {
-                return this.number.split('').reverse().join('');
-            }
-        },
-        watch: {
-            //감시하고 싶은 데이터 작성
-            number(newVal, oldVal) {  //newValue와 oldValue를 매개변수로 사용. newValue에는 변한 값, oldValue에는 변하기 전 값이 할당됨.
-                console.log(newVal, oldVal); //하나 하나 안녕하세요.
-                this.updated = '네';
+            changeColor() {
+                this.isRed = !this.isRed;  //click 시 마다 값이 바뀜!! 토글 !!
+                this.isBold = !this.isBold;
             }
         }
     };
@@ -89,5 +77,11 @@
 <style scoped>
     p:hover {
         opacity: 0.5;
+    }
+    .red{
+        color: red;
+    }
+    .bold{
+        font-weight: bold;
     }
 </style>
