@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: "LoginHeader.vue",
+        name: "LoginHeader",
         data() {
             return {
                 message: '어서 오세요. DIY 홈 프레그런스의 가장 깊이 있는 경험이 있는 곳, 캔들웍스 입니다.'

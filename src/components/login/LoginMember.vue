@@ -6,15 +6,18 @@
                     <h4 class="subtitle">회원</h4>
                     <form class="form-style">
                         <div>
-                            <input class="input-style" placeholder="아이디" v-model="user.mb_id">
+                            <input class="input-style" type="text" placeholder="아이디" v-model="user.mb_id">
+                            <div v-if="errors" class="errorMessage">
+                                {{ errors }}
+                            </div>
                         </div>
                         <div style="margin-bottom: 10px">
                             <input class="input-style" placeholder="패스워드" type="password" v-model="user.mb_password">
+                            <div v-if="errors" class="errorMessage">
+                                {{ errors }}
+                            </div>
                         </div>
                     </form>
-                    <div v-if="errors.mb_id">
-                        {{ errors }}
-                    </div>
                     <div>
                         <button class="button-style" @click="login">로그인</button>
                     </div>
@@ -48,6 +51,7 @@
 <script>
     import EvCheckBox from "@/components/EvCheckBox";
     import axios from 'axios';
+
     /**
      * @route post https://candleworks.co.kr/api/v1/login
      * @param mb_id string
@@ -57,24 +61,30 @@
     export default {
         name: "LoginMember",
         components: {EvCheckBox},
-        data(){
+        data() {
             return {
-                user:{
-                    mb_id : 'hana',
-                    mb_password : 'password'
+                user: {
+                    mb_id: '',
+                    mb_password: ''
                 },
-                errors:{}
+                errors: ''
             }
         },
         methods: {
-            async login(){
-                try{
+            async login() {
+                try {
                     const result = await axios.post("/api/v1/login", this.user);
                     console.log(result);
+                    this.saveId();
                 } catch (e) {
                     console.log('catch');
                     console.log(e.response);
-                    this.errors = e.response.data;
+                    this.errors = e.response.data.mb_id;
+                }
+            },
+            saveId() {
+                if (this.user.mb_id !== "") {
+                    localStorage.setItem(this.user.mb_id, this.user.mb_password);
                 }
             }
         }
@@ -85,21 +95,16 @@
     .subtitle {
         font-size: 30px;
         font-weight: 500;
-        margin:8px 0;
+        margin: 8px 0;
     }
-    .subtitle:before {
-        width: 10px ;
-        height: 10px;
-        display: inline-block;
-        color: yellow;
-        content: '>>';
-    }
-    .form-style{
+
+    .form-style {
         margin-bottom: 20px;
         padding: 10px 0;
         margin-top: 20px;
         height: 140px;
     }
+
     .input-style {
         border: 1px solid rgba(102, 102, 102, 0.3);
         font-size: 14px;
@@ -107,16 +112,20 @@
         height: 40px;
         line-height: 40px;
         width: 100%;
-        margin-bottom: 22px;
+        margin-bottom: 5px;
+        margin-top: 20px;
         opacity: 1;
         transition: all 0.2s;
     }
+
     .input-style:hover {
         border: 1px solid rgba(102, 102, 102, 1);
     }
+
     .input-style::placeholder {
         color: darkgray;
     }
+
     .button-style {
         height: 40px;
         width: 100%;
@@ -131,9 +140,11 @@
         outline: none;
         margin-bottom: 20px;
     }
+
     .button-style:hover {
         opacity: 0.9;
     }
+
     input[id="autoLogin"] + label:before {
         width: 18px;
         height: 18px;
@@ -142,7 +153,15 @@
         display: inline-block;
         vertical-align: middle;
     }
+
     input[id="autoLogin"]:checked + label {
         background: yellow;
+    }
+
+    .errorMessage {
+        color: #f56c6c;
+        font-size: 12px;
+        line-height: 1px;
+        padding-top: 4px;
     }
 </style>

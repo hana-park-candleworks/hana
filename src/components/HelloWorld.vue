@@ -1,5 +1,13 @@
 <template>
-    <div class="min-h-screen w-screen bg-white flex">
+    <div class="min-h-screen w-screen bg-white flex p-4">
+        <div>
+            <form @submit.prevent="submit">
+                <input type="text" class="border border-gray-300" :value="inputValue" @keyup="updateText" id="inputId"><br>
+                {{ inputValue }}
+                <label for="inputId"></label>
+                <button type="submit">제출</button>
+            </form>
+        </div>
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
                 :key="list.id"
@@ -9,7 +17,7 @@
                     <p class="block my-1 text-black font-semibold font-sans tracking-wide">{{list.desc}}</p>
                 </div>
             </li>
-            <img class="m-auto" :src="imgUrl">
+            <img alt="" class="m-auto" :src="imgUrl">
         </ul>
     </div>
 </template>
@@ -47,13 +55,21 @@
                         desc: "감사한 마음을 향기에 담아 선물하세요",
                         img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
                     }
-                ]
+                ],
+                inputValue: 'text'
             }
         },
         methods: {
             upDateImgUrl(index) {
                 this.imgUrlIndex = index
                 this.imgUrl = this.lists[this.imgUrlIndex].img
+            },
+            submit() {
+                alert('제출됨');
+                console.log(this.inputValue);
+            },
+            updateText(e) {
+                this.inputValue = e.target.value;
             }
 
         }
