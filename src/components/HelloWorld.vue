@@ -1,14 +1,11 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
         <div>
-            <form @submit.prevent="submit">
-<!--                <input type="text" class="border border-gray-300" :value="inputValue" @keyup="updateText" id="inputId"><br>-->
-<!--                v-model을 사용해서 :value, @keyup까지 모두 생략할 수 있음. 입력되는 value값을 실시간으로 data에 반영하고 (prop) 자동으로 event를 발생시켜 html에 적용도 해줌. (emit)-->
-                <input type="text" class="border border-gray-300" v-model="inputValue" id="inputId"><br>
-                {{ inputValue }}
-                <label for="inputId"></label>
-                <button type="submit">제출</button>
-            </form>
+            {{ reverseMessage }}
+<!--        템플릿 내에 표현식을 넣으면 편리하지만, 복잡해지면 코드가 지저분해지기 때문에 computed 를 사용함.
+            methods와 computed의 차이는 ?
+            methods를 쓸 때는 템플릿 함수 뒤에 ()를 써줘야 하고 computed는 생략 가능.
+            computed 속성은 캐싱을 하고, methods는 캐싱을 하지 않는다. 계산된 값을 저장해두기 때문에 계산된 값을 여러번 써야될 때 더 효율적인 코드가 됨. -->
         </div>
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
@@ -58,30 +55,27 @@
                         img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
                     }
                 ],
-                inputValue: 'text'
+                number: '안녕하세요.'
             }
         },
         methods: {
             upDateImgUrl(index) {
                 this.imgUrlIndex = index
                 this.imgUrl = this.lists[this.imgUrlIndex].img
-            },
-            submit() {
-                alert('제출됨');
-                console.log(this.inputValue);
-            },
-            // v-model 사용으로 생략가능하게 된 메소드.
-            // updateText(e) {
-            //     this.inputValue = e.target.value;
-            // }
+            }
 
+        },
+        computed: {
+            reverseMessage() {
+                return this.number.split('').reverse().join('');
+            }
         }
     };
 
 </script>
 
 <style scoped>
-    p:hover{
+    p:hover {
         opacity: 0.5;
     }
 </style>
