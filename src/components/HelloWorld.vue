@@ -1,13 +1,12 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
-        <button @click="rendering"> 랜더링 </button>
-        <div v-if="show"> Yes </div>
-        <div v-else> No </div>
-<!--        v-if의 조건이 false가 되면 Yes div 자체가 랜더링이 되지 않는다.
-            v-if 와 v-show의 차이점?
-            v-if는 조건이 false이면 랜더링하지 않고 조건이 true가 될 때 마다 랜더링을 해주기 때문에 토글 비용이 높고,
-            v-show는 미리 랜더링 해놓고 display none으로 스타일만 바뀌기 때문에 초기 랜더링 비용이 높다.
-            자주 토글 해야하는 것은 v-show가 효율적이고, 런타임 시 조건이 바뀌지 않는다면 v-if가 효율적이다. -->
+        <li v-for="( person, index ) in people" :key="person.name + person.age" style="list-style: none">
+            <div>{{ person.name }} {{ person.age }} {{ index }}</div>
+        </li>
+
+<!--      person in people 대신에 person of people 이라고 해도 같은 결과가 나온다.
+          key는 고유한 값이어야 한다. 보통 배열 값들을 조합해서 쓰거나 배열 속에 아이디 값을 넣어서 쓴다.
+          인덱스로 key를 쓰는 것은 배열 값들이 재정렬되면서 바뀔 수 있기 때문에 고유한 값으로 key를 갖기가 애매해져서 좋지 않다. -->
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
                 :key="list.id"
@@ -56,7 +55,11 @@
                         img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
                     }
                 ],
-                show: false
+                people: [
+                    { name: 'a', age: 20 },
+                    { name: 'b', age: 21 },
+                    { name: 'c', age: 22 }
+                ]
             }
         },
         methods: {
@@ -64,9 +67,7 @@
                 this.imgUrlIndex = index
                 this.imgUrl = this.lists[this.imgUrlIndex].img
             },
-            rendering() {
-                this.show = !this.show;
-            }
+
         }
     };
 
