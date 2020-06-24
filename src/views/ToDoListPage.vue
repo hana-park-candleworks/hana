@@ -3,6 +3,7 @@
         <todo-header/>
         <todo-input @add="addTodo"/>
         <todo-list :items="todoItems" @removed="removeTodo"/>
+<!--        :items="todoItems"  todoItems 배열에 들어있는 데이터들을 items에 담아 하위 컴포넌트(todolist)로 보낸다.-->
         <todo-footer @click="clearAll()"/>
     </div>
 </template>

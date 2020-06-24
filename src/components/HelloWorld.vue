@@ -1,9 +1,7 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
 
-<!--   API: 여러 페이지로 구성된 것처럼 보이지만 처음에 index.html이 열리고 나선 그 페이지에서 모든 것이 이루어짐. 엄청나!
-        페이지를 왔다갔다 하는 것처럼 보이는 것이 뷰 라우터의 기능이다.
-
+<!--
     -->
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
