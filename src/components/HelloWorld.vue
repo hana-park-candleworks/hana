@@ -1,7 +1,8 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
 
-<!--       -->
+<!--   node modules에는 vue에서 사용하는 package들이 들어 있음.
+    -->
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
                 :key="list.id"
@@ -17,12 +18,9 @@
 </template>
 
 <script>
-    export default { //컴포넌트를 등록하면 html 태그처럼 사용할 수 있다.
-                    // 컴포넌트 내에서는 1개의 태그에 모든 나머지 태그들이 들어가야한다.
-                    //전역컴포넌트로 등록하면 어디서든 쓸 수 있다는 장점이 있지만, 그 컴포넌트를 더 이상 사용하지 않더라도 최종빌드에는 들어가기 때문에
-        // 사용자가 다운로드 받아야 하는 자바스트립트의 양이 불필요하게 커지게 된다.
+    export default {
         name: "HelloWorld",
-        data() {  //재사용 컴포넌트이기 때문에 그냥 data로 두면 다른 컴포넌트들 까지 다 영향을 받게 된다. 오브젝트가 레퍼런스 주소로 넘어간다. 그래서 data를 함수 형태로 data() 선언한다.
+        data() {
             return {
                 imgUrl: "https://image.candleworks.com/cw_magazine/157/SpCZN6LAQrvxEaT5lJacoArHG4tXw6aimW2bn61P.jpeg",
                 imgUrlIndex: 0,
