@@ -1,12 +1,7 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
-        <li v-for="( person, index ) in people" :key="person.name + person.age" style="list-style: none">
-            <div>{{ person.name }} {{ person.age }} {{ index }}</div>
-        </li>
 
-<!--      person in people 대신에 person of people 이라고 해도 같은 결과가 나온다.
-          key는 고유한 값이어야 한다. 보통 배열 값들을 조합해서 쓰거나 배열 속에 아이디 값을 넣어서 쓴다.
-          인덱스로 key를 쓰는 것은 배열 값들이 재정렬되면서 바뀔 수 있기 때문에 고유한 값으로 key를 갖기가 애매해져서 좋지 않다. -->
+<!--       -->
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
                 :key="list.id"
@@ -22,9 +17,12 @@
 </template>
 
 <script>
-    export default {
+    export default { //컴포넌트를 등록하면 html 태그처럼 사용할 수 있다.
+                    // 컴포넌트 내에서는 1개의 태그에 모든 나머지 태그들이 들어가야한다.
+                    //전역컴포넌트로 등록하면 어디서든 쓸 수 있다는 장점이 있지만, 그 컴포넌트를 더 이상 사용하지 않더라도 최종빌드에는 들어가기 때문에
+        // 사용자가 다운로드 받아야 하는 자바스트립트의 양이 불필요하게 커지게 된다.
         name: "HelloWorld",
-        data() {
+        data() {  //재사용 컴포넌트이기 때문에 그냥 data로 두면 다른 컴포넌트들 까지 다 영향을 받게 된다. 오브젝트가 레퍼런스 주소로 넘어간다. 그래서 data를 함수 형태로 data() 선언한다.
             return {
                 imgUrl: "https://image.candleworks.com/cw_magazine/157/SpCZN6LAQrvxEaT5lJacoArHG4tXw6aimW2bn61P.jpeg",
                 imgUrlIndex: 0,
@@ -55,11 +53,7 @@
                         img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
                     }
                 ],
-                people: [
-                    { name: 'a', age: 20 },
-                    { name: 'b', age: 21 },
-                    { name: 'c', age: 22 }
-                ]
+
             }
         },
         methods: {
