@@ -4,6 +4,7 @@
             <div class="flex space-between">
                 <div class="flex-col w-1/2 pl-0" style="border-right: 1px solid #ddd; padding-right: 20px;">
                     <h4 class="subtitle">회원</h4>
+                    <span v-if="welcome"> 환영합니다. {{ savedUserId }} 님. </span>
                     <form class="form-style">
                         <div>
                             <input class="input-style" type="text" placeholder="아이디" v-model="user.mb_id">
@@ -67,7 +68,9 @@
                     mb_id: '',
                     mb_password: ''
                 },
-                errors: ''
+                errors: '',
+                welcome: false,
+                savedUserId : ''
             }
         },
         methods: {
@@ -76,6 +79,7 @@
                     const result = await axios.post("/api/v1/login", this.user);
                     console.log(result);
                     this.saveId();
+                    this.welcome = true;
                 } catch (e) {
                     console.log('catch');
                     console.log(e.response);
@@ -85,7 +89,12 @@
             saveId() {
                 if (this.user.mb_id !== "") {
                     localStorage.setItem(this.user.mb_id, this.user.mb_password);
+                    this.savedUserId = this.user.mb_id;
                 }
+            },
+            clearInput () {
+                this.user.mb_id = "";
+                this.user.mb_password = "";
             }
         }
     }
