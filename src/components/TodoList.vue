@@ -3,7 +3,7 @@
         <ul>
             <li class="bg-white text-left p-2 my-1 border" v-for="(todoItem, index) in items" :key="index + 'todo-list-id'">
                 <span>
-                    <i class="fa fa-check-square"/>
+                    <i class="fa fa-check-square"></i>
                 </span>
                 <span :class="{ line : textLine }" @click="textTrue">
                     {{ todoItem }}
@@ -37,7 +37,7 @@
                 this.$emit('removed', todoItem, index);
             },
             textTrue() {
-                this.textLine = true
+                this.textLine = !this.textLine
             }
         }
     }
