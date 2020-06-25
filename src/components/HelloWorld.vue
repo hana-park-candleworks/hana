@@ -1,6 +1,11 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
-
+    <form action="">
+        <input-field :name="name" @update-name="updateName"/>
+<!--        :하위 컴포넌트가 받을 이름="상위 컴포넌트가 하위 컴포넌트로 보낼 데이터 이름" @하위 컴포넌트가 보낸 이벤트 이름 = "상위 컴포넌트에서 실행시킬 이벤트 이름"-->
+        <br><button> Submit </button>
+    </form>
+        {{ name }}
 <!--
     -->
         <ul class="w-full text-black">
@@ -18,8 +23,10 @@
 </template>
 
 <script>
+    import InputField from "@/components/inputField";
     export default {
         name: "HelloWorld",
+        components: {InputField},
         data() {
             return {
                 imgUrl: "https://image.candleworks.com/cw_magazine/157/SpCZN6LAQrvxEaT5lJacoArHG4tXw6aimW2bn61P.jpeg",
@@ -51,7 +58,7 @@
                         img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
                     }
                 ],
-
+                name: ''
             }
         },
         methods: {
@@ -59,7 +66,9 @@
                 this.imgUrlIndex = index
                 this.imgUrl = this.lists[this.imgUrlIndex].img
             },
-
+            updateName(name) {
+                this.name = name;
+            }
         }
     };
 
