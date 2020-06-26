@@ -1,18 +1,13 @@
 <template>
     <div class="min-h-screen w-screen bg-white flex p-4">
-        <slot name="helloTemplate" :slotData="slotData"></slot>
-<!--        slot 의 이름을 지정 해주고 원하는 위치에 넣어 준다.
-            상위 컴포넌트에 넣어준 html이 출력 된다.
-            상위 컴포넌트에 하위 컴포넌트에서 선언된 변수 데이터를 넘겨줄 수도 있다. -->
-    <form action="">
-        <input-field :name="name" @update-name="updateName"/>
-<!--        :하위 컴포넌트가 받을 이름="상위 컴포넌트가 하위 컴포넌트로 보낼 데이터 이름" @하위 컴포넌트가 보낸 이벤트 이름 = "상위 컴포넌트에서 실행시킬 이벤트 이름"-->
-        <br><button> Submit </button>
-    </form>
-        {{ name }}
+        <form>
+        <input-field v-model="namedd"/>
+        <!--        :하위 컴포넌트가 받을 이름="상위 컴포넌트가 하위 컴포넌트로 보낼 데이터 이름" @하위 컴포넌트가 보낸 이벤트 이름 = "상위 컴포넌트에서 실행시킬 이벤트 이름"-->
+        <button @click="addlists"> Submit</button>
+        </form>
 
-<!-- slot: 컴포넌트 사이에 원하는 html을 또 추가하고 싶을 때 사용한다.
-    -->
+        <!-- slot: 컴포넌트 사이에 원하는 html을 또 추가하고 싶을 때 사용한다.
+            -->
         <ul class="w-full text-black">
             <li v-for="(list, index) in lists"
                 :key="list.id"
@@ -23,13 +18,13 @@
                 </div>
             </li>
             <img alt="" class="m-auto" :src="imgUrl">
-            {{ lists }}
         </ul>
     </div>
 </template>
 
 <script>
     import InputField from "@/components/inputField";
+
     export default {
         name: "HelloWorld",
         components: {InputField},
@@ -37,7 +32,7 @@
             return {
                 imgUrl: "https://image.candleworks.com/cw_magazine/157/SpCZN6LAQrvxEaT5lJacoArHG4tXw6aimW2bn61P.jpeg",
                 imgUrlIndex: 0,
-                name: '',
+                namedd: null,
                 slotData: 'first slot data'
             }
         },
@@ -48,6 +43,10 @@
             },
             updateName(name) {
                 this.name = name;
+            },
+            addlists() {
+                // const commitValue = this.$store.commit('ADD_LiSTS', e.target);
+                console.log(this.name);
             }
         },
         computed: {  //실시간으로 데이터를 받아와야 하기 때문에 methods가 아닌 computed에 작성해줌.
@@ -63,10 +62,12 @@
     p:hover {
         opacity: 0.5;
     }
-    .red{
+
+    .red {
         color: red;
     }
-    .bold{
+
+    .bold {
         font-weight: bold;
     }
 </style>
