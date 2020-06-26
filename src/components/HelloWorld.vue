@@ -23,6 +23,7 @@
                 </div>
             </li>
             <img alt="" class="m-auto" :src="imgUrl">
+            {{ lists }}
         </ul>
     </div>
 </template>
@@ -36,33 +37,6 @@
             return {
                 imgUrl: "https://image.candleworks.com/cw_magazine/157/SpCZN6LAQrvxEaT5lJacoArHG4tXw6aimW2bn61P.jpeg",
                 imgUrlIndex: 0,
-                lists: [
-                    {
-                        id: 1,
-                        desc: "기본에 충실하게, PC 몰드로 만드는 모던한 감성",
-                        img: "https://image.candleworks.com/cw_magazine/157/SpCZN6LAQrvxEaT5lJacoArHG4tXw6aimW2bn61P.jpeg"
-                    },
-                    {
-                        id: 2,
-                        desc: "가끔 봐도, 오래 보아도 예쁜 캔들",
-                        img: "https://image.candleworks.com/cw_magazine/156/hLqODKT17rJUJAuVVQwwkgFZWycaFHZ2DZAFESxr.jpeg"
-                    },
-                    {
-                        id: 3,
-                        desc: "기본에 충실한 도구",
-                        img: "https://image.candleworks.com/cw_magazine/155/zSnv9P2l2OiRz2dNlPJva8oAurLV5df8NkBVhcuW.jpeg"
-                    },
-                    {
-                        id: 4,
-                        desc: "컬러, 이제 전용 컬러칩으로 확인하세요",
-                        img: "https://image.candleworks.com/cw_magazine/154/b4MdMIgpvb79KT3YnFtYSdUhvHjChHtBOk8YbVQk.jpeg"
-                    },
-                    {
-                        id: 5,
-                        desc: "감사한 마음을 향기에 담아 선물하세요",
-                        img: "https://image.candleworks.com/cw_magazine/153/OELywMGcxii9JhHrA8Ctvq5eNO6A2H5qmPfGclNB.jpeg"
-                    }
-                ],
                 name: '',
                 slotData: 'first slot data'
             }
@@ -74,6 +48,11 @@
             },
             updateName(name) {
                 this.name = name;
+            }
+        },
+        computed: {  //실시간으로 데이터를 받아와야 하기 때문에 methods가 아닌 computed에 작성해줌.
+            lists() {
+                return this.$store.state.lists;
             }
         }
     };
