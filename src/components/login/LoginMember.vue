@@ -76,10 +76,12 @@
         methods: {
             async login() {
                 try {
-                    const result = await axios.post("/api/v1/login", this.user);
-                    console.log(result);
-                    this.saveId();
-                    this.welcome = true;
+                    await axios.post("/api/v1/login", this.user)
+                    .then(res => {
+                        console.log(res);
+                        this.saveId();
+                        this.welcome = true;
+                    })
                 } catch (e) {
                     console.log('catch');
                     console.log(e.response);
